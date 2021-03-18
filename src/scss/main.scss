@@ -1,1 +1,148 @@
 // This is where you can import other stylesheets or write your scss code
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: content-box;
+}
+
+// Center content mixin
+
+@mixin center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+main {
+    width: 80vw;
+    @include center;
+    margin: auto;
+    padding-top: 100px;
+}
+
+h1 {
+    text-align: center; 
+}
+
+section {
+    @include center;
+    margin-bottom: 30px;
+}
+
+
+// Reset list mixin
+@mixin reset-list {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+ul {
+    @include reset-list;
+    margin-left: 50%;
+}
+
+
+
+// Hide element mixin
+@mixin hide {
+    visibility: hidden;
+}
+
+span {
+    @include hide;
+}
+
+
+// Triangle mixin
+@mixin triangle {
+    width: 0; 
+    height: 0; 
+    border-left: 60px solid transparent;
+    border-right: 60px solid transparent;
+    border-bottom: 60px solid rgb(111, 172, 12);
+}
+
+.triangle-example {
+    @include triangle;
+    @include center;
+}
+
+
+// Fade in animation mixin
+@mixin fade-in {
+    height: 250px;
+    width: 250px;
+    animation-name: stretch;
+    animation-duration: 1.5s; 
+    animation-timing-function: ease-out; 
+    animation-delay: 0;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    animation-fill-mode: none;
+    animation-play-state: running;
+  }
+  
+@keyframes stretch {
+    0% {
+      transform: scale(.3);
+      background-color: rgb(248, 1, 174);
+      border-radius: 100%;
+    }
+    50% {
+      background-color: rgb(241, 131, 232);
+    }
+    100% {
+      transform: scale(1.5);
+      background-color: rgb(0, 238, 255);
+    }
+}
+
+
+.element {
+    @include fade-in;
+    @include center;
+}
+
+
+// Font sizing mixin
+@mixin font-size ($font-size) {
+     @if $font-size == xs {
+         font-size: 12px;} 
+     @else if $font-size == sm {
+         font-size: 14px;}
+     @else if $font-size == m {
+          font-size: 16px;}
+     @else if $font-size == l {
+            font-size: 32px;}
+     @else if $font-size == xl {
+            font-size: 48px;}
+     @else if $font-size == xxl {
+            font-size: 61px;} 
+     @else {
+         @error "font size must be valid size!";
+     }          
+} 
+
+.text-xs {
+    @include font-size(xs);
+}
+.text-sm {
+    @include font-size(sm);
+}
+.text-m {
+    @include font-size(m);
+}
+.text-l {
+    @include font-size(l);
+}
+.text-xl {
+    @include font-size(xl);
+}
+.text-xxl {
+    @include font-size(xxl);
+}
+
