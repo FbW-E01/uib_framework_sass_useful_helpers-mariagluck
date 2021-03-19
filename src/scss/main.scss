@@ -93,7 +93,7 @@ span {
       border-radius: 100%;
     }
     50% {
-      background-color: rgb(241, 131, 232);
+      background-color: rgb(247, 223, 12);
     }
     100% {
       transform: scale(1.5);
@@ -123,7 +123,7 @@ span {
      @else if $font-size == xxl {
             font-size: 61px;} 
      @else {
-         @error "font size must be valid size!";
+         @error "font-size must be valid size!";
      }          
 } 
 
@@ -146,3 +146,35 @@ span {
     @include font-size(xxl);
 }
 
+// Function font size by name
+@function font-size ($font-size) {
+    @if $font-size == xs {
+        @return 12px;
+    }
+    @else if $font-size == sm {
+        @return 14px;
+    }
+    @else if $font-size == m {
+        @return 16px;
+    }
+    @else if $font-size == l {
+        @return 32px;
+    }
+    @else if $font-size == xl {
+        @return 48px;
+    }
+    @else if $font-size == xxl {
+        @return 61px;
+    }
+    @else {
+        @error "Property #{$fontSize} must be an actual size 'xs, sm, m, l, xl, or xxl'.";
+      }
+}
+
+.headline {
+    font-size: font-size('xl');
+}
+
+.paragraph {
+    font-size: font-size('l');
+}
